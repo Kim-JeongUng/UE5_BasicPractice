@@ -32,4 +32,32 @@ void UStringGameInstance ::Init()
 	{
 		UE_LOG(LogTemp, Log, TEXT("Split Test: %s 와 %s"), *Left, *Right);
 	}
+
+	int32 IntValue = 32;
+	float FloatValue = 3.141592;
+
+	FString FloatIntString = FString::Printf(TEXT("Int:%d Float: %f"), IntValue, FloatValue);
+	FString FloatString = FString::SanitizeFloat(FloatValue);
+	FString IntString = FString::FromInt(IntValue);
+
+	UE_LOG(LogTemp, Log, TEXT("%s"), *FloatIntString);
+	UE_LOG(LogTemp, Log, TEXT("Int: %s Float:%s"), *IntString, *FloatString);
+
+	int32 IntValueFromString = FCString::Atoi(*IntString);
+	float FloatValueFromString = FCString::Atof(*FloatString);
+	FString FloatIntString2 = FString::Printf(TEXT("Int : %d Float :%f"),IntValueFromString,FloatValueFromString);
+	UE_LOG(LogTemp, Log, TEXT("%s"), *FloatIntString2);
+
+	FName key1(TEXT("PELVIS"));
+	FName key2(TEXT("pelvis"));
+	UE_LOG(LogTemp, Log, TEXT("FName 비교결과 : %s"), key1 == key2 ? TEXT("같음") : TEXT("다름"));
+
+	for (int i=0; i<10000; i++)
+	{
+		//bad
+		FName SearchInNamePool = FName(TEXT("pelvis"));
+
+		//good
+		const static FName StaticOnleOnce(TEXT("pelvis"));
+	}
 }
