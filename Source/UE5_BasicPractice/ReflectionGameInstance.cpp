@@ -2,6 +2,8 @@
 
 
 #include "ReflectionGameInstance.h"
+
+#include "Staff.h"
 #include "Student.h"
 #include "Teacher.h"
 
@@ -13,7 +15,6 @@ UReflectionGameInstance::UReflectionGameInstance()
 void UReflectionGameInstance::Init()
 {
 	Super::Init();
-
 	UE_LOG(LogTemp, Log, TEXT("==========================="));
 	UClass* ClassRuntime = GetClass();
 	UClass* ClassCompile = UReflectionGameInstance ::StaticClass();
@@ -54,5 +55,6 @@ void UReflectionGameInstance::Init()
 		Teacher->ProcessEvent(DoLessonFunc,nullptr);
 	}
 	UE_LOG(LogTemp, Log, TEXT("==========================="));
+	
 
 }

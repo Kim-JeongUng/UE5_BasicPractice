@@ -14,13 +14,3 @@ void UPerson::DoLesson()
 
 }
 
-const FString& UPerson::GetName() const
-{
-	return Name;
-}
-
-
-void UPerson::SetName(const FString& InName)
-{
-	Name = InName;
-}

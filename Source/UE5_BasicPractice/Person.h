@@ -18,10 +18,9 @@ public:
 	UPerson();
 	
 	UFUNCTION()
-	virtual void DoLesson();
 
-	const FString& GetName() const;
-	void SetName(const FString& InName);
+	FORCEINLINE FString& GetName() {return Name;}
+	FORCEINLINE void SetName(const FString& InName) {Name = InName;}
 	
 protected:
 	UPROPERTY()
