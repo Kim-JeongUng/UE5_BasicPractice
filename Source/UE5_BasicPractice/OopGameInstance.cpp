@@ -30,6 +30,7 @@ void UOopGameInstance::Init()
 		if(LessonInterface)
 		{
 			UE_LOG(LogTemp, Log, TEXT("%s님은 수업에 참여할 수 있습니다."),*Person->GetName());
+			LessonInterface->DoLesson();
 		}
 		else
 		{
