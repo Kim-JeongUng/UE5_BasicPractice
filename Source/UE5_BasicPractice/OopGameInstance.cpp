@@ -20,7 +20,16 @@ void UOopGameInstance::Init()
 	TArray<UPerson*> Persons = { NewObject<UStudent>(), NewObject<UTeacher>(), NewObject<UStaff>() };
 	for(const auto Person : Persons)
 	{
-		UE_LOG(LogTemp, Log, TEXT("구성원 이름: %s"),*Person->GetName());
+		const UCard* OwnCard =Person->GetCard();
+		ECardType CardType = OwnCard->GetCardType();
+		//UE_LOG(LogTemp, Log, TEXT("%s님이 소유한 카드의 종류: %d"),*Person->GetName(), CardType);
+
+		const UEnum* CardEnumType = FindObject<UEnum>(nullptr,TEXT("/Script/UE5_BasicPractice.ECardType"));
+		if(CardEnumType)
+		{
+		   FString CardMetaData = CardEnumType->GetDisplayNameTextByValue((int64)CardType).ToString();
+		   UE_LOG(LogTemp, Log, TEXT("%s님이 소유한 카드의 종류: %s"),*Person->GetName(), *CardMetaData);
+		}
 	}
 	UE_LOG(LogTemp, Log, TEXT("==========================="));
 

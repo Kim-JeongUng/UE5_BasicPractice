@@ -5,6 +5,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Card.h"
 #include "Person.generated.h"
 
 /**
@@ -13,7 +14,9 @@
 UCLASS()
 class UE5_BASICPRACTICE_API UPerson : public UObject
 {
+	
 	GENERATED_BODY()
+	
 public:
 	UPerson();
 	
@@ -21,6 +24,9 @@ public:
 
 	FORCEINLINE FString& GetName() {return Name;}
 	FORCEINLINE void SetName(const FString& InName) {Name = InName;}
+
+	FORCEINLINE class UCard* GetCard() const {return Card;}
+	FORCEINLINE void SetCard(class UCard* InCard){Card = InCard;}
 	
 protected:
 	UPROPERTY()
@@ -28,6 +34,10 @@ protected:
 
 	UPROPERTY()
 	int32 Year;
+
+	UPROPERTY()
+	TObjectPtr<class UCard> Card;
+
 	
 private:
 };

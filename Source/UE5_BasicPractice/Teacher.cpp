@@ -3,12 +3,15 @@
 
 #include "Teacher.h"
 
+#include "Card.h"
+
 
 UTeacher::UTeacher()
 {
 	Name = TEXT("선생1");
 	Year = 3;
 	Id = 1;
+	Card -> SetCardType(ECardType::Teacher);
 }
 
 void UTeacher::DoLesson()
