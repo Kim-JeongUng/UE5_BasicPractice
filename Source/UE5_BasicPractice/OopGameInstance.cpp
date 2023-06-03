@@ -3,6 +3,7 @@
 
 #include "OopGameInstance.h"
 
+#include "CourseInfo.h"
 #include "Staff.h"
 #include "Student.h"
 #include "Teacher.h"
@@ -10,12 +11,15 @@
 
 UOopGameInstance::UOopGameInstance()
 {
-	SchoolName = TEXT("기본 학교");
+	SchoolName = TEXT("학교");
 }
 
 void UOopGameInstance::Init()
 {
 	Super::Init();
+
+	CourseInfo = NewObject<UCourseInfo>();
+	
 	UE_LOG(LogTemp, Log, TEXT("==========================="));
 	TArray<UPerson*> Persons = { NewObject<UStudent>(), NewObject<UTeacher>(), NewObject<UStaff>() };
 	for(const auto Person : Persons)
@@ -48,5 +52,18 @@ void UOopGameInstance::Init()
 	}
 	UE_LOG(LogTemp, Log, TEXT("==========================="));
 
+	UStudent* Student1 = NewObject<UStudent>();
+	Student1->SetName(TEXT("학생1"));
+	UStudent* Student2 = NewObject<UStudent>();
+	Student2->SetName(TEXT("학생2"));
+	UStudent* Student3 = NewObject<UStudent>();
+	Student3->SetName(TEXT("학생3"));
+
+	CourseInfo->OnChanged.AddUObject(Student1, &UStudent::GetNotification);
+	CourseInfo->OnChanged.AddUObject(Student1, &UStudent::GetNotification);
+	CourseInfo->OnChanged.AddUObject(Student1, &UStudent::GetNotification);
+
+	CourseInfo->ChangeCourseInfo(SchoolName, TEXT("변경된 학사 정보"));
+	UE_LOG(LogTemp, Log, TEXT("==========================="));
 	
 }
